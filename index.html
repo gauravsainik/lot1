@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamRide Lucky Draw - Win Your Dream Ride</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%); }
+        .bike-glow { box-shadow: 0 0 50px rgba(220, 38, 38, 0.3); }
+        .fade-in { animation: fadeIn 1s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-2xl font-bold text-red-500">DreamRide</div>
+                <div class="space-x-6">
+                    <a href="#home" class="hover:text-red-400 transition-colors">Home</a>
+                    <a href="result.html" class="hover:text-red-400 transition-colors">Results</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 fade-in">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <h1 class="text-5xl lg:text-7xl font-black leading-tight">
+                        Win Your
+                        <span class="text-red-500 block">Dream Ride</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 max-w-lg">
+                        Enter our exclusive lucky draw for just ₹99 and stand a chance to win the legendary Harley-Davidson X440. Your dream machine awaits.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="buy.html" class="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 text-center">
+                            Buy Ticket Now - ₹99
+                        </a>
+                        <a href="result.html" class="border border-gray-600 hover:border-red-500 px-8 py-4 rounded-lg font-semibold text-lg transition-all text-center">
+                            View Results
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop" 
+                         alt="Harley-Davidson X440" 
+                         class="w-full h-auto rounded-2xl bike-glow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bike Variants Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-4">Harley-Davidson X440</h2>
+                <p class="text-xl text-gray-400">Available in stunning color variants</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-black rounded-2xl p-6 hover:bg-gray-800 transition-all transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop" 
+                         alt="Black X440" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Midnight Black</h3>
+                    <p class="text-gray-400">Classic stealth elegance</p>
+                </div>
+                
+                <div class="bg-black rounded-2xl p-6 hover:bg-gray-800 transition-all transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&h=300&fit=crop" 
+                         alt="Red X440" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Racing Red</h3>
+                    <p class="text-gray-400">Bold and aggressive</p>
+                </div>
+                
+                <div class="bg-black rounded-2xl p-6 hover:bg-gray-800 transition-all transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=400&h=300&fit=crop" 
+                         alt="Blue X440" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Ocean Blue</h3>
+                    <p class="text-gray-400">Deep and mysterious</p>
+                </div>
+                
+                <div class="bg-black rounded-2xl p-6 hover:bg-gray-800 transition-all transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop&sat=-100" 
+                         alt="Silver X440" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Silver Storm</h3>
+                    <p class="text-gray-400">Sophisticated shine</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">How It Works</h2>
+                <p class="text-xl text-gray-400">Simple steps to win your dream ride</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center space-y-4">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">1</div>
+                    <h3 class="text-xl font-semibold">Buy Ticket</h3>
+                    <p class="text-gray-400">Purchase your lucky draw ticket for just ₹49</p>
+                </div>
+                
+                <div class="text-center space-y-4">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">2</div>
+                    <h3 class="text-xl font-semibold">Get Ticket ID</h3>
+                    <p class="text-gray-400">Receive your unique ticket ID via email</p>
+                </div>
+                
+                <div class="text-center space-y-4">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">3</div>
+                    <h3 class="text-xl font-semibold">Win Big</h3>
+                    <p class="text-gray-400">Wait for the draw and claim your prize</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-bg">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold mb-6">Ready to Win?</h2>
+            <p class="text-xl text-gray-300 mb-8">Don't miss your chance to own the legendary Harley-Davidson X440</p>
+            <a href="buy.html" class="bg-red-600 hover:bg-red-700 px-12 py-4 rounded-lg font-semibold text-xl transition-all transform hover:scale-105 inline-block">
+                Enter Lucky Draw - ₹99
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="text-2xl font-bold text-red-500 mb-4">DreamRide</div>
+            <p class="text-gray-400 mb-4">Your gateway to luxury rides</p>
+            <p class="text-sm text-gray-500">© 2024 DreamRide Lucky Draw. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-black');
+                nav.classList.remove('bg-black/80');
+            } else {
+                nav.classList.add('bg-black/80');
+                nav.classList.remove('bg-black');
+            }
+        });
+    </script>
+</body>
+</html>
