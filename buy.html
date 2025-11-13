@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Ticket - DreamRide Lucky Draw</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%); }
+        .form-glow { box-shadow: 0 0 30px rgba(220, 38, 38, 0.2); }
+        .fade-in { animation: fadeIn 1s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .loading { animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-black/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-red-500">DreamRide</a>
+                <div class="space-x-6">
+                    <a href="index.html" class="hover:text-red-400 transition-colors">Home</a>
+                    <a href="result.html" class="hover:text-red-400 transition-colors">Results</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="gradient-bg min-h-screen py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Side - Form -->
+                <div class="fade-in">
+                    <div class="bg-gray-900 rounded-2xl p-8 form-glow">
+                        <h1 class="text-3xl font-bold mb-2">Buy Your Lucky Ticket</h1>
+                        <p class="text-gray-400 mb-8">Enter your details to purchase a ticket for ₹99</p>
+                        
+                        <form id="ticketForm" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-2">Full Name</label>
+                                <input type="text" id="name" name="name" required
+                                       class="w-full px-4 py-3 bg-black border border-gray-700 rounded-lg focus:border-red-500 focus:outline-none transition-colors"
+                                       placeholder="Enter your full name">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
+                                <input type="email" id="email" name="email" required
+                                       class="w-full px-4 py-3 bg-black border border-gray-700 rounded-lg focus:border-red-500 focus:outline-none transition-colors"
+                                       placeholder="Enter your email address">
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-sm font-medium mb-2">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required
+                                       class="w-full px-4 py-3 bg-black border border-gray-700 rounded-lg focus:border-red-500 focus:outline-none transition-colors"
+                                       placeholder="Enter your phone number">
+                            </div>
+                            
+                            <div class="bg-black rounded-lg p-4 border border-gray-700">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-lg font-semibold">Ticket Price:</span>
+                                    <span class="text-2xl font-bold text-red-500">₹99</span>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" id="buyButton"
+                                    class="w-full bg-red-600 hover:bg-red-700 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                                <span id="buttonText">Proceed to Payment</span>
+                                <div id="buttonLoader" class="hidden inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full loading ml-2"></div>
+                            </button>
+                        </form>
+                        
+                        <div class="mt-6 text-center">
+                            <p class="text-sm text-gray-500">Secure payment powered by Razorpay</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Info -->
+                <div class="fade-in">
+                    <div class="space-y-8">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4">What You Get</h2>
+                            <ul class="space-y-3 text-gray-300">
+                                <li class="flex items-center">
+                                    <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                                    Unique ticket ID sent to your email
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                                    Chance to win Harley-Davidson X440
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                                    Instant payment confirmation
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                                    100% secure transaction
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-900 rounded-xl p-6">
+                            <h3 class="text-xl font-semibold mb-3">Prize Details</h3>
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop" 
+                                 alt="Harley-Davidson X440" class="w-full h-40 object-cover rounded-lg mb-4">
+                            <p class="text-gray-400">Harley-Davidson X440 - Choose your favorite color variant when you win!</p>
+                        </div>
+                        
+                        <div class="bg-yellow-900/20 border border-yellow-600 rounded-lg p-4">
+                            <h4 class="font-semibold text-yellow-400 mb-2">Important Note</h4>
+                            <p class="text-sm text-yellow-200">Keep your ticket ID safe. You'll need it to claim your prize if you win!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-gray-900 rounded-2xl p-8 max-w-md w-full text-center">
+            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Payment Successful!</h3>
+            <p class="text-gray-400 mb-4">Your ticket has been purchased successfully.</p>
+            <p class="text-sm text-gray-500 mb-6">Ticket ID: <span id="ticketId" class="font-mono text-red-400"></span></p>
+            <p class="text-sm text-gray-500 mb-6">Check your email for confirmation and ticket details.</p>
+            <button onclick="closeModal()" class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-lg transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // EmailJS initialization
+        emailjs.init('jh3_w7Sw4J88DZfMZ');
+        
+        const API_BASE_URL = 'http://localhost:3000';
+        
+        document.getElementById('ticketForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (!name || !email || !phone) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            setLoading(true);
+            
+            try {
+                // Create order
+                const response = await fetch(`${API_BASE_URL}/create-order`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ amount: 9900 })
+                });
+                
+                const orderData = await response.json();
+                
+                if (!orderData.success) {
+                    throw new Error(orderData.message || 'Failed to create order');
+                }
+                
+                // Initialize Razorpay
+                const options = {
+                    key: orderData.key_id,
+                    amount: orderData.amount,
+                    currency: orderData.currency,
+                    name: 'DreamRide Lucky Draw',
+                    description: 'Lucky Draw Ticket - ₹99',
+                    order_id: orderData.order_id,
+                    handler: function(response) {
+                        handlePaymentSuccess(response, { name, email, phone });
+                    },
+                    prefill: {
+                        name: name,
+                        email: email,
+                        contact: phone
+                    },
+                    theme: {
+                        color: '#dc2626'
+                    },
+                    modal: {
+                        ondismiss: function() {
+                            setLoading(false);
+                        }
+                    }
+                };
+                
+                const rzp = new Razorpay(options);
+                rzp.open();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error creating order: ' + error.message);
+                setLoading(false);
+            }
+        });
+        
+        async function handlePaymentSuccess(paymentResponse, userDetails) {
+            try {
+                // Generate ticket ID
+                const ticketId = `TKT${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
+                
+                // Send email using EmailJS
+                const emailParams = {
+                    to_name: userDetails.name,
+                    to_email: userDetails.email,
+                    ticket_id: ticketId,
+                    payment_id: paymentResponse.razorpay_payment_id,
+                    amount: '₹99'
+                };
+                
+                await emailjs.send('service_cxwkdpb', 'template_1vytewp', emailParams);
+                
+                // Show success modal
+                document.getElementById('ticketId').textContent = ticketId;
+                document.getElementById('successModal').classList.remove('hidden');
+                
+                setLoading(false);
+                
+            } catch (error) {
+                console.error('Error sending email:', error);
+                alert('Payment successful but failed to send email. Please contact support with payment ID: ' + paymentResponse.razorpay_payment_id);
+                setLoading(false);
+            }
+        }
+        
+        function setLoading(loading) {
+            const button = document.getElementById('buyButton');
+            const buttonText = document.getElementById('buttonText');
+            const buttonLoader = document.getElementById('buttonLoader');
+            
+            if (loading) {
+                button.disabled = true;
+                buttonText.textContent = 'Processing...';
+                buttonLoader.classList.remove('hidden');
+            } else {
+                button.disabled = false;
+                buttonText.textContent = 'Proceed to Payment';
+                buttonLoader.classList.add('hidden');
+            }
+        }
+        
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            // Redirect to home page
+            window.location.href = 'index.html';
+        }
+        
+        // Form validation
+        document.getElementById('email').addEventListener('blur', function() {
+            const email = this.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email && !emailRegex.test(email)) {
+                this.style.borderColor = '#ef4444';
+            } else {
+                this.style.borderColor = '#374151';
+            }
+        });
+        
+        document.getElementById('phone').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    </script>
+</body>
+</html>
